@@ -1,0 +1,35 @@
+@import "./../../Assets/BasicStyle/base.scss";
+.background-image-section{
+    .add-train-wrapper{
+        height: 80vh;
+        background-color: rgba(238, 236, 214,0.7);
+        width: 90%;
+        padding: 0 30px;
+        margin: 10px auto;
+        .add-train{
+            padding-top:30px;
+            text-align: center;
+            font-family: cursive;
+        }
+        div{
+            margin: 10px 0 0 0;
+            .MuiFormControl-root{
+                width: 97%;
+            }
+        }
+        @include tablet{
+            width: 50%;
+        }
+        .error-wrapper{
+            text-align: center;
+            font-weight: bold;
+        }
+        .submit-btn{
+            margin-top: 30px;
+            button{
+                width: 97%;
+            }
+        }
+       
+    }
+}

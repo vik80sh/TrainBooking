@@ -1,0 +1,20 @@
+.search-box {
+  input {
+    background-image: url("./../../Assets/Icons/search.png");
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px 0 0 2px;
+    font-size: 16px;
+    background-color: white;
+    background-position: 10px 10px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    padding: 5px 20px 5px 10px;
+    transition: width 0.4s ease-in-out;
+    width: 100%;
+    background-position: right;
+  }
+  input:focus {
+    outline: none;
+  }
+}

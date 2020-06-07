@@ -1,0 +1,90 @@
+@import "./../../Assets/BasicStyle/base.scss";
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    text-align: center;
+
+    .popup_inner {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 15%;
+        margin: 5px;
+        background: white;
+        min-height: 425px;
+        @include tablet{
+            left: 25%;
+            right: 25%;
+            margin: 50px;
+        }
+        .xyz{
+            margin: 0 60px;
+            p{
+                width: 90%;
+                .MuiFormControl-root{
+                    width: 100%;
+                }
+            }
+            .login-btn-contenter{
+               margin-top: 30px;
+                button{
+                    margin: 0 auto;
+                    width: 88%;
+                }
+                .admin-btn{
+                    margin-top: 50px;
+                }
+            }
+        }
+       
+        .btn-close {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .form-header {
+            margin: 20px 0;
+            color: black;
+            font-size: 20px;
+        
+            .active{
+                color: blue;
+                font-weight: 600;
+            }
+            .form-login {
+                padding-right: 10px;
+                cursor: pointer;
+            }
+    
+            .form-sign {
+                padding-left: 10px;
+                cursor: pointer;
+            }
+            .btn-close{
+                width: 60px;
+            }
+        }
+
+        .error-login {
+            text-align: center;
+            color: red;
+            padding: 0 10px;
+            font-weight: 600;
+        }
+    }
+}
+@media screen and (max-width: 600px) {
+    .popup_inner {
+        left: 2%;
+        right: 2%;
+    }
+}

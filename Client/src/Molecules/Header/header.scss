@@ -1,0 +1,43 @@
+@import "./../../Assets/BasicStyle/base.scss";
+
+.header-wrapper {
+    background-color: dodgerblue;
+    color: #ffffff;
+    display: flex;
+
+    .logo {
+        @include mobile {
+            font-family: cursive;
+        }
+        padding-left: 10px;
+        flex: 7;
+    }
+    .cart {
+        cursor: pointer;
+        margin: 0 20px;
+        width: 20px;
+        @include tablet {
+            text-align: right;
+            margin-left: auto;
+            padding-right: 20px;
+        }
+    }
+    .train {
+        cursor: pointer;
+        margin: 0 20px;
+        width: 20px;
+    }
+    .login {
+        flex: 2;
+        .user-name {
+            padding-right: 10px;
+        }
+        @include tablet {
+            text-align: left;
+            flex: 1;
+        }
+        .login-singup {
+            cursor: pointer;
+        }
+    }
+}
