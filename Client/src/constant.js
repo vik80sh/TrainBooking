@@ -9,5 +9,5 @@ export const allAPI = {
     userLogin : `${userAPI}/login`,
     getUsername :`${userAPI}/username`,
     addTrain : `${trainAPI}/addTrain`,
-    trainList:`${trainAPI}/trainslist`,
+    trainList:`${trainAPI}/trainList`,
 }

@@ -15,7 +15,7 @@ export default class Layout extends Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/addtrain" component={AddTrain} />
-                        <Route path="/searchtrain/:id/:id" component={TrainSearch} />
+                        <Route path="/search-train/:id/:id" component={TrainSearch} />
                         <Route component={NotFound} />
                     </Switch>
                 </div>

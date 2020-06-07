@@ -1,1 +1,99 @@
 @import './../../Assets/BasicStyle/base.scss';
+
+.search-train-wrapper {
+    margin: 10px;
+    .row {
+        margin: 0;
+    }
+    .all-train-btn {
+        padding: 40px 0;
+        margin: 0 auto;
+
+        @include tablet {
+            width: 30%;
+            margin: 0 auto;
+        }
+
+        button {
+            width: 100%;
+
+            @include tablet {
+                width: 100%;
+            }
+        }
+    }
+
+    .select-date {
+        span {
+            padding-right: 20px;
+        }
+        .react-datepicker__input-container {
+            .c1 {
+                border: none;
+                border-bottom: 1px solid black;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            input[type="text"i] {
+                text-align: center;
+            }
+
+        }
+    }
+
+    .train-details {
+        margin: 10px 5px 5px 2px;
+        border-style: solid;
+        border-color: #87cefa;
+        padding-top: 20px;
+
+        @include tablet {
+            display: flex;
+        }
+        .train-price-container {
+            padding: 20px;
+            position: relative;
+
+            @include tablet {
+                display: flex;
+            }
+            .train-book {
+                text-align: right;
+            }
+        }
+    }
+
+    .all-train-list {
+        .search-box {
+            margin: 50px 0;
+        }
+    }
+
+    .selected-train {
+        margin: 40px 5px 5px 2px;
+        border-style: solid;
+        border-color: #87cefa;
+        padding: 30px 0;
+        width: 100%;
+
+        span {
+            text-align: center;
+            margin: 10px;
+
+            @include tablet {
+                margin: 50px;
+            }
+        }
+
+        button {
+            width: 92%;
+            margin: 10px 11px;
+            @include tablet {
+                width: 22%
+            }
+        }
+    }
+}
