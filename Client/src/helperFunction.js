@@ -71,4 +71,37 @@ export const HelpersFunction = {
             return tarinData;
         }
     },
+    bookTrain: async (body) => {
+        body.token= store.getState().loginReducer.token;
+        try {
+            const res = await axios.post(allAPI.trainBooking, body);
+            return res.data;
+        }
+        catch (err) {
+            return tarinData;
+        }
+    },
+    allbookedticket: async () => {
+       let token = store.getState().loginReducer.token;
+       let body = {
+        token: token
+    }
+        try {
+            const res = await axios.get(allAPI.allbookedticket, {params:body});
+            return res.data;
+        }
+        catch (err) {
+            return tarinData;
+        }
+    },
+    cancelTicket: async (body) => {
+        body.token= store.getState().loginReducer.token;
+        try {
+            const res = await axios.post(allAPI.cancel, body);
+            return res.data;
+        }
+        catch (err) {
+            return tarinData;
+        }
+    },
 }

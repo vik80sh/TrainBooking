@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 
 import ErrorMessage from './../../Atoms/ErrorMessage/errorMessage'
 import BasicSearchBox from '../../Atoms/SearchBoxInput/searchBox';
+import BasicTextFields from './../../Atoms/InputField/basicInputField';
 
 import { HelpersFunction } from '../../helperFunction';
 
@@ -21,7 +22,11 @@ class TrainSearch extends Component {
             selectedTrain: "",
             searchResult: [],
             isTrainSelected: false,
-            date: new Date()
+            date: new Date(),
+            userDetails: [],
+            name:"",
+            age:0,
+            userDetailsError:""
         }
     }
 
@@ -52,7 +57,7 @@ class TrainSearch extends Component {
             this.setState({ selectedTrain: data, isTrainSelected: true })
 
         else
-            this.setState({ errorMessage: "Please Login",isTrainSelected: true,selectedTrain: data })
+            this.setState({ errorMessage: "Please Login"})
 
     }
     handleChange = (date) => {
@@ -99,12 +104,59 @@ class TrainSearch extends Component {
             pathname: `/search-train/all/all`
         })
     }
-    bookTrain=async(selected)=>{
 
+    addUser=()=>{
+        let data = {
+            name:this.state.name,
+            age:this.state.age
+        }
+        if(data.name=="" || data.age<0){
+            this.setState({userDetailsError:"Please enter both the field age shoulbe be not be -Ve"})
+            return 
+        }
+        this.setState({userDetails:[...this.state.userDetails,data],name:"",age:0,userDetailsError:""})
+    }
+    editUser=(e,index)=>{
+        this.setState({userDetailsError:""})
+        if(index===-1){
+            this.setState({[e.target.name]:e.target.value})
+        }else{
+            let stateValue = this.state.userDetails;
+            let edit = stateValue[index];
+            if(e.target.name==='name')
+                edit.name=e.target.value;
+            else 
+                edit.age=e.target.age;
+            stateValue[index] = edit;
+            this.setState({userDetails:stateValue})
+        }
+    }
+    deleteUser=(index)=>{
+        let stateValue = this.state.userDetails;
+        let edit = stateValue[index];
+        stateValue = stateValue.filter(data=>data!==edit)
+        this.setState({userDetails:stateValue})
+    }
+    confirm = async (selected) => {
+        if(this.state.userDetails.length===0){
+            this.setState({userDetailsError:"Please enter user Details"})
+            return;
+        }
+        selected.price = selected.price * this.state.userDetails.length;
+        selected.userDetails = this.state.userDetails;
+        selected.date = this.state.date;
+        let data = await HelpersFunction.bookTrain(selected)
+        if(data && data.messgae)
+            this.setState({userDetailsError:"Please enter user Details"})
+        else{
+            this.setState({userDetailsError:"Successfully booked ticket",userDetails:[]})
+        }
 
     }
     render() {
-        let selectedTrain= this.state.selectedTrain;
+        let selectedTrain = this.state.selectedTrain;
+        let userDetails = this.state.userDetails
+        let numberOfUser = userDetails.length;
         return (
             <div className="search-train-wrapper">
                 {this.state.isLoader && <div className="loader"></div>}
@@ -128,8 +180,8 @@ class TrainSearch extends Component {
                         {this.state.searchResult.map((data, index) => {
                             return <div className="col-xs-12 train-details col-md-12 col-lg-12" key={index}>
                                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 train-detail-container">
-                                    <div className="train-name"><i className="fa fa-train train" aria-hidden="true" /> <span> {data.trainName} </span> <span>({data.trainNumber})</span></div>
-                                    <div className="train-s-d">{data.from} =>{data.to}</div>
+                                    <div className="train-name"><i className="fa fa-train train" aria-hidden="true" /> <span className="text-capitalize"> {data.trainName} </span> <span>({data.trainNumber})</span></div>
+                                    <div className="train-s-d" className="text-capitalize">{data.from} =>{data.to}</div>
                                 </div>
                                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 train-price-container">
                                     <div className="train-price col-xs-12 col-sm-12 col-md-5">RS {data.price}</div>
@@ -140,10 +192,29 @@ class TrainSearch extends Component {
                     </div>
                 </div> :
                     <div className="selected-train">
-                        <span><i className="fa fa-train train" aria-hidden="true" /> </span><span> {selectedTrain.trainName} </span> <span>({selectedTrain.trainNumber})</span>
-                        <span>{selectedTrain.from} =>{selectedTrain.to}</span>
-                        <span> RS {selectedTrain.price}</span>
-                        <button className="btn btn-info" onClick={() => this.bookTrain(selectedTrain)}>Confirm</button>
+                        <div><span><i className="fa fa-train train" aria-hidden="true" /> </span><span> {selectedTrain.trainName} </span> <span>({selectedTrain.trainNumber})</span>
+                            <span>{selectedTrain.from} =>{selectedTrain.to}</span>
+                            <span> RS {selectedTrain.price}</span>
+                        </div>
+                        <div className="userDetails">
+                    <p> Add Deatils  <span> Total Price :  {numberOfUser >0 ? selectedTrain.price * numberOfUser : selectedTrain.price}</span> </p>
+                           <ErrorMessage text={this.state.userDetailsError} />
+                            {
+                                userDetails.map((data, index) => {
+                                    return <div className="user-list-wrapper">
+                                        <BasicTextFields label="Name" name="Name" type="text" value={data.name} onChange={(e) => this.editUser(e, index)} />
+                                        <BasicTextFields label="Age" name="Age" type="number" value={data.age} onChange={(e) => this.editUser(e, index)} />
+                                        <i class="fa fa-trash" aria-hidden="true" onClick={() => this.deleteUser(index)}></i>
+                                    </div>
+                                })
+                            }
+                            <div className="user-list-wrapper">
+                                <BasicTextFields label="Name" name="name" type="text" value={this.state.name}  onChange={(e) => this.editUser(e, -1)} />
+                                <BasicTextFields label="Age" name="age" type="number" value={this.state.age} onChange={(e) => this.editUser(e, -1)} />
+                                <span onClick={this.addUser}> + </span>
+                            </div>
+                        </div>
+                        <button className="btn btn-info" onClick={() => this.confirm(selectedTrain)}>Confirm</button>
                     </div>
                 }
             </div>

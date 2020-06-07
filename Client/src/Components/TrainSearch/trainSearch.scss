@@ -1,4 +1,4 @@
-@import './../../Assets/BasicStyle/base.scss';
+@import "./../../Assets/BasicStyle/base.scss";
 
 .search-train-wrapper {
     margin: 10px;
@@ -40,7 +40,6 @@
             input[type="text"i] {
                 text-align: center;
             }
-
         }
     }
 
@@ -92,7 +91,32 @@
             width: 92%;
             margin: 10px 11px;
             @include tablet {
-                width: 22%
+                width: 22%;
+            }
+        }
+        .userDetails {
+            text-align: center;
+            p{
+                padding: 20px;
+                border-top: 1px solid;
+                margin-top: 25px;
+
+                span{
+                    color: red;
+                    font-weight: bold;
+                }
+            }
+            .user-list-wrapper {
+                background-color: antiquewhite;
+                
+                padding: 10px;
+                .MuiFormControl-root {
+                    padding-right: 60px;
+                }
+                span{
+                    font-size: 32px;
+                    cursor: pointer;
+                }
             }
         }
     }

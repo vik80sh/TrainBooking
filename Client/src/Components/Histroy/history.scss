@@ -1,0 +1,55 @@
+@import "./../../Assets/BasicStyle/base.scss";
+.history-wrapper{
+    .booking-list{
+        margin: 20px;
+        text-transform: capitalize;
+        span{
+            margin: 20px;
+        }
+        .booking-name{
+            border: 1px solid gold;
+            padding: 20px;
+            .train-name{
+                font-weight: bold;
+                text-align: center; 
+            }
+            .name{
+                border: 1px dashed yellowgreen;
+                width: 100%;
+                padding: 10px 0;
+                @include tablet{
+                    width: 40%;
+                }
+            }
+            .button{
+                width: 100%;
+                color: red;
+                font-weight: bold;
+                margin-top: 20px;
+                @include tablet{
+                    width: 55%;
+                    float: right;
+                }
+                button{
+                    width: 100%;
+                    @include tablet{
+                        width: 30%;
+                    }
+                   
+                }
+            }
+            .date{
+                padding: 20px;
+                font-weight: bold;
+            }
+            .station-name{ 
+               
+                font-weight: bold;
+            }
+            .price{
+                padding: 20px;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ const express = require('express')
 const app = express();
 const UserSchema = require('./routes/userAPI');
 const TrainSchema = require('./routes/trainAPI');
-const CartsSchema = require('./routes/cartAPI');
+const UserBookingSchema = require('./routes/userBookinAPI');
 const AdminSchema = require('./routes/adminAPI');
 
 mongoose.Promise = global.Promise;
@@ -23,7 +23,7 @@ const Port = process.env.PORT || 4000;
 
 app.use('/users', UserSchema);
 app.use('/train', TrainSchema);
-app.use('/carts', CartsSchema);
+app.use('/userbooking', UserBookingSchema);
 app.use('/admin', AdminSchema)
 const server = app.listen(Port, function () {
   console.log('Listening on port ' + Port);

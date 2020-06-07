@@ -54,11 +54,12 @@ class AddTrain extends Component {
         }
         let data = await HelpersFunction.addTrain(this.state) 
         if(data&&data.id)
-            this.setState({ErrorMessage:"Succefully inserted in database"})
+            this.setState({ErrorMessage:"Succefully inserted in database",trainName:"",trainNumber:"",to:"",from:"",price:0})
         else if(data&&data.message)
             this.setState({ErrorMessage:data.message})
     }
     render() {
+        let stateValue= this.state;
         return (
             <div className="background-image-section" style={{ backgroundImage: `url(${ticket})` }}>
                 <MarqueeTag simpleText="Developed By" boldText="Vikash Gupta" />
@@ -66,17 +67,17 @@ class AddTrain extends Component {
                     <div className="add-train"> Hey Vikash, Please add Train in Database</div>
                     <ErrorMessage text={this.state.ErrorMessage}/>
                     <div className="train-name">
-                        <BasicTextFields label="Train Name" name="trainName" type="text" onChange={this.handleChange} />
+                        <BasicTextFields label="Train Name" name="trainName" type="text" value={stateValue.trainName}onChange={this.handleChange} />
                     </div>
                     <div className="train-number">
-                        <BasicTextFields label="Train Number (Length should be 5)" name="trainNumber" type="text" onChange={this.handleChange} />
+                        <BasicTextFields label="Train Number (Length should be 5)" name="trainNumber"   value={stateValue.trainNumber} type="text" onChange={this.handleChange} />
                     </div>
                     <div className="train-number">
-                        <BasicTextFields label="FROM" name="from" type="text" onChange={this.handleChange} />
-                        <BasicTextFields label="TO" name="to" type="text" onChange={this.handleChange} />
+                        <BasicTextFields label="FROM" name="from" type="text" value={stateValue.from} onChange={this.handleChange} />
+                        <BasicTextFields label="TO" name="to" type="text" value={stateValue.to} onChange={this.handleChange} />
                     </div>
                     <div className="ticket-price">
-                        <BasicTextFields label="Ticket Price" name="price" type="number" onChange={this.handleChange} />
+                        <BasicTextFields label="Ticket Price" name="price" value={stateValue.price} type="number" onChange={this.handleChange} />
                     </div>
                     <div className="submit-btn">
                         <button className="btn btn-info" onClick={this.addTrain}>Add Train</button>

@@ -49,7 +49,7 @@ class Header extends Component {
         return (
             <div className="section-head header-wrapper ">
                 <div className="logo" onClick={() => this.props.history.push("/")}><WebsiteLogo /></div>
-                {this.state.isLogin &&<i className="fa fa-shopping-cart cart" aria-hidden="true" onClick={() => this.props.history.push("/cart")}></i>}
+                {this.state.isLogin &&<i className="fa fa-history cart" aria-hidden="true" onClick={() => this.props.history.push("/history")}></i>}
                 {this.state.isAdmin && <i class="fa fa-train train" aria-hidden="true"  onClick={() => this.props.history.push("/addtrain")}></i>}
                 <div className="login">
                     <span className="user-name" title={this.state.nameTitle}>{this.state.name}</span>

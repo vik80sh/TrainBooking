@@ -4,8 +4,10 @@ import Header from './Molecules/Header/header'
 import Home from './Components/Home/home';
 import AddTrain from './Components/AddTrain/addTrain'
 import TrainSearch from './Components/TrainSearch/trainSearch';
+import History from './Components/Histroy/history';
 
 const NotFound = () => <div>Not found</div>
+
 export default class Layout extends Component {
     render() {
         return (
@@ -15,7 +17,9 @@ export default class Layout extends Component {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/addtrain" component={AddTrain} />
+                        <Route path="/history" component={History} />
                         <Route path="/search-train/:id/:id" component={TrainSearch} />
+                        
                         <Route component={NotFound} />
                     </Switch>
                 </div>
